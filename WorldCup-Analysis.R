@@ -27,14 +27,14 @@ ggplot(data, aes(x=x, y=y)) +
   geom_point() + 
  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
-#COnnencted scattered plot
+#Connencted scattered plot
 y <- wc$GoalsScored
 x <- wc$Year
 plot(x, y, xlim = range(x), ylim = range(y), pch=16, xlab = "WC-Year", ylab = "Scored-Goals")
 lines(x, y, xlim = range(x), ylim = range(y), pch=16, col="blue")
 
 
-#How many times each country hosted the WC?
+#Where did each WC was hosted?
 barplot(table(wc$Country), las=2)
 
 #Attendance during each WC?
