@@ -37,15 +37,37 @@ lines(x, y, xlim = range(x), ylim = range(y), pch=16, col="blue")
 #How many times each country hosted the WC?
 barplot(table(wc$Country), las=2)
 
-#How many teams qualified each WC ?
+#Attendance during each WC?
+str(wc$Attendance)  #It is factor and '.' instead of ','
+x <- wc$Year
+ytemp <- gsub("\\.", "", wc$Attendance)  # replace '.' by ','
+y <- as.numeric(ytemp)
+str(ytemp)
+str(y)
+
+str(wc$Attendance)  #It is factor and '.' instead of ','
+x <- wc$Year
+ytemp <- gsub("\\.", "", wc$Attendance)  # replace '.' by ','
+y <- as.numeric(ytemp)
+str(ytemp)
+str(y)
+plot(x, y, xlim = range(x), ylim = range(y), pch=16, xlab = "WC-Year", ylab = "Attendants")
+lines(x, y, xlim = range(x), ylim = range(y), pch=16, col="blue")
+
+#Attendance during each WC? (ggplot)
+ggplot(wc, aes(x,y)) + 
+  geom_point() +
+  geom_line() +
+  theme_bw() +
+  theme_linedraw() +
+  xlab("Year") +
+  ylab("Attendants") +
+  theme_classic(base_size = 15) +
+  scale_x_continuous(breaks = round(seq(min(x), max(x), by = 4),1)) +
+  scale_y_continuous(breaks = round(seq(min(y), max(y), by = 100000))) 
 
   
-  
-  
-  
-  
-  
-  
+
   
 
 
