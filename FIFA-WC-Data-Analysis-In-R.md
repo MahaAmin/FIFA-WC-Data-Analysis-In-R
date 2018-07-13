@@ -69,6 +69,26 @@ barplot(table(wc$Country), las=2)
 ![](WC-Hosts.png)
 
 ### 3.4) How many people attended each World-Cup ?
+Here is a case where you need to modify the data to do complete your job.
+By examining **wc$Attendance** column we find that it's factor and there is '.' instead of ',' inside each string.
+```
+str(wc$Attendance)  #It is factor and '.' instead of ','
+```
+![](str$attendance.png)
+
+We need to fix that :
+```
+#Attendance during each WC?
+# Fixing format of wc$attendance
+str(wc$Attendance)  #It is factor and '.' instead of ','
+x <- wc$Year  # store data to be plotted on x-axis
+ytemp <- gsub("\\.", "", wc$Attendance)  # replace '.' by ','
+y <- as.numeric(ytemp)  # cast data in ytemp from factor to numeric and store it in variable y
+str(ytemp)
+str(y)
+```
+Now we can plot the graph (Year VS Attendants):
+
 ```
 #Attendance during each WC? (ggplot)
 library(ggplot2)
