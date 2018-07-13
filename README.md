@@ -74,7 +74,7 @@ By examining **wc$Attendance** column we find that it's factor and there is '.' 
 ```
 str(wc$Attendance)  #It is factor and '.' instead of ','
 ```
-![](str$attendance.png)
+![](str-wc$attendance.png)
 
 We need to fix that :
 ```
