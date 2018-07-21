@@ -122,18 +122,23 @@ And visually:
 ![](Graphs/Participation_Frequency.png)
 
 ### 3.2) How many goals each country score in World-Cups ?
+
 Again we will need frequency-table:
+
 ![](Graphs/scored-goals-frequency-table.png)
 
 And visually:
+
 ![](Graphs/Scored_Goals.png)
 
 ### 3.3) How many goals scored against each country in World-Cups ?
 
 Same idea ... frequency table:
+
 ![](Graphs/against-goals-frequency-table.png)
 
 And visually:
+
 ![](Graphs/Against_Goals.png)
 
 
