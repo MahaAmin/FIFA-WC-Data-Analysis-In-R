@@ -86,33 +86,6 @@ ggplot(matches, aes(x = matches$Home.Team.Initials, fill = matches$Stage)) +
 
 str(matches$Year)
 
-# #Another method
-# #select columns you are working on:
-# #1) wc_matches$Home.Team.Intials
-# homeIntials <- wc_matches$Home.Team.Initials
-# 
-# #2)Stages:
-# stages <- wc_matches$Stage
-# 
-# #replace "Group 1", "Group 2", "Group A" , ...etc to "Groups"
-# stages <- as.character(stages)
-# groups <- grep("Group",matches$Stage)
-# for (group in groups){
-#   stages[group] = "Groups"
-# }
-# 
-# countryVSstage <- table(homeIntials, stages)
-# countryVSstage <- as.data.frame(countryVSstage)
-# ggplot(countryVSstage, aes(x = countryVSstage$homeIntials, fill = matches$Stage )) +
-#   geom_bar(width = 0.5) + 
-#   xlab("Home_Team") + 
-#   ylab("Total_Number") + 
-#   labs(fill = "Stage") +
-#   theme_bw(base_size = 12) +
-#   coord_flip()
-# 
-# str(countryVSstage)
-# table(matches$Stage)
 #######################################################################################################
 
 # HOW MANY TIMES EACH COUNTRY PARTICIPATED IN WC ?
