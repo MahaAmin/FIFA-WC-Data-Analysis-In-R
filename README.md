@@ -41,7 +41,7 @@ It is a good idea to start examining each **variable(column)** alone and take in
 ### 3.1) How many times did each country win a world cup?
 ```
 table(wc$Winner)
-barplot(table(wc$Winner), las=2)
+barplot(sort(table(wc$Winner), decreasing = TRUE), las=2)
 ```
 You can print the answer on the console:
 ![](table-wc$winner.png)
@@ -64,7 +64,7 @@ lines(x, y, xlim = range(x), ylim = range(y), pch=16, col="blue")
 ### 3.3) Where did each World-Cup was hosted ?
 ```
 #Where did each WC was hosted?
-barplot(table(wc$Country), las=2)
+barplot(sort(table(wc$Country), decreasing = TRUE), las=2)
 ```
 ![](WC-Hosts.png)
 
