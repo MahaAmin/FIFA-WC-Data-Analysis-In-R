@@ -122,24 +122,28 @@ And visually:
 ![](Graphs/Participation_Frequency.png)
 
 ### 3.2) How many goals each country score in World-Cups ?
-
 Again we will need frequency-table:
-
 ![](Graphs/scored-goals-frequency-table.png)
 
 And visually:
-
 ![](Graphs/Scored_Goals.png)
 
 ### 3.3) How many goals scored against each country in World-Cups ?
 
 Same idea ... frequency table:
-
 ![](Graphs/against-goals-frequency-table.png)
 
 And visually:
-
 ![](Graphs/Against_Goals.png)
+
+### 3.4) Distribution of scored-goals during single match :
+![](Graphs/goals-In-Match-Histogram.png)
+
+### 3.5) Is it more likely to score goals during First-Half or Second-Half of the match ?
+
+![](Graphs/First_VS_Second_Half_Goals.png)
+
+
 
 
 
