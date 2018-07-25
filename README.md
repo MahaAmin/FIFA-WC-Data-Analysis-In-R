@@ -106,6 +106,9 @@ ggplot(wc, aes(x,y)) +
 
 ![](Graphs/WC-Attendants-ggplot.png)
 
+## 2.5) Find a relation between attendants, goals-scored, number of played matches, and number of qualified teams:
+
+![](Graphs/Correlations.png)
 
 ### 3) WorldCup_Matches Table Exploration:
 This table contains observations about each match played in World Cups.
