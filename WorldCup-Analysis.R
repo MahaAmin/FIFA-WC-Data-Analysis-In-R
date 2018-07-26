@@ -13,6 +13,7 @@ str(wc)
 library("RColorBrewer")
 display.brewer.all()
 library(ggplot2)
+library(scales)
 #########################################################################################
 #How many times did each country win a world cup?
 table(wc$Winner)
@@ -53,7 +54,7 @@ str(ytemp)
 str(y)
 
 # Graph using plot()
-plot(x, y, xlim = range(x), ylim = c(ymin, ymax), pch=16, xlab = "WC-Year", ylab = "Attendants", main = "WC-Attendants")
+plot(x, y, xlim = range(x), pch=16, xlab = "WC-Year", ylab = "Attendants", main = "WC-Attendants")
 lines(x, y, xlim = range(x), ylim = range(y), pch=16, col="blue")
 
 #Attendance during each WC? (ggplot)
@@ -76,6 +77,8 @@ matches$Stage <- as.character(matches$Stage)
 for (group in groups){
   matches$Stage[group] = "Groups"
 }
+
+
 ggplot(matches, aes(x = matches$Home.Team.Initials, fill = matches$Stage)) +
   geom_bar(width = 0.5) + 
   xlab("Home_Team") + 
@@ -211,5 +214,76 @@ yaxis <- againstGoalsDF[order(againstGoals, decreasing = TRUE),]
 barplot(yaxis$againstGoals, names.arg = yaxis$countries, ylim = c(0,120),las=2, main = "Total Against Goals", ylab = "Against_Goals",col = brewer.pal(n = 11, name = "Spectral"))
 ###############################################################################################################################################################################################
 
+# Who is the palyer participated the most in WC?
+
+#################################################################################################################
+
+# What is the max number of goals each country scored in a match ?
+
+############################################################################################################################
+
+# What is the average number of goals scored in a match ?
+matchID <- wc_matches$MatchID
+matchGoals <- vector(length = 852)
+for(i in 1:852){
+  matchGoals[i] = wc_matches$Home.Team.Goals[i] + wc_matches$Away.Team.Goals[i]
+}
+
+matchGoalsDF <- data.frame(matchID, wc_matches$Home.Team.Name, wc_matches$Away.Team.Name, matchGoals, wc_matches$Home.Team.Goals, wc_matches$Away.Team.Goals)
+matchGoalsDF <- matchGoalsDF[order(matchGoals, decreasing = TRUE),]
+hist(matchGoalsDF$matchGoals, breaks=seq(min(matchGoalsDF$matchGoals)-0.5, max(matchGoalsDF$matchGoals)+0.5),ylim = c(0,200),  main = "Goals_In_Match Distribution" ,xlab = "Goals_In_Match",col = brewer.pal(n = 11, name = "RdBu"))
+axis(1, at = seq(0, 12, by = 1))
+#histInfo <- hist(matchGoalsDF$matchGoals)
+##############################################################################################################################
+# Who is the Goal-Keeper played largest number of matches in WC?
+
+# For each country what is best stage it reached (Groups, semi-finals, finals, ... etc) ?
 
 
+################################################################################################################################
+# How many countries won after extra-time ?
+
+# What are the most matches with attendants ? 
+###########################################################################################################
+# Is it more likely that teams score goals in the first or second half ?
+half_time_goals <- 0
+secondHalf_goals <- 0
+for (i in 1:852){
+  half_time_goals <- half_time_goals + matches$Half.time.Home.Goals[i] + matches$Half.time.Away.Goals[i]
+  secondHalf_goals <- secondHalf_goals + (matches$Home.Team.Goals[i] - matches$Half.time.Home.Goals[i]) + (matches$Away.Team.Goals[i] - matches$Half.time.Away.Goals[i])
+}
+
+df <- data.frame(
+  round = c("First_Half", "Second_Half"),
+  values = c(half_time_goals, secondHalf_goals),
+  percentage = c((half_time_goals/(half_time_goals+secondHalf_goals)), (secondHalf_goals/(half_time_goals+secondHalf_goals)))
+)
+
+bp <- ggplot(df, aes(x="", y=percentage, fill=round))+
+  geom_bar(width = 1, stat = "identity")
+bp
+
+pie <- bp + coord_polar("y", start=0)
+blank_theme <- theme_minimal() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    panel.border = element_blank(),
+    panel.grid=element_blank(),
+    axis.ticks = element_blank(),
+    plot.title=element_text(size=14, face="bold")
+  )
+
+pie + scale_fill_brewer("Goals_Scored") +  blank_theme +
+  theme(axis.text.x=element_blank()) + 
+  geom_text(aes(y = percentage/2 + c(0,cumsum(percentage)[-length(percentage)]), 
+                label = percent(percentage)), position = position_stack(vjust = 0.5))
+#################################################################################################
+# Relation between number of qualified teams, attendants, scored goals, and matches palyed ?
+
+par(mfrow = c(2,2))
+plot(wc$Year, wc$QualifiedTeams, xlab = "Year", ylab = "Qualified_Teams")
+plot(wc$Year, ytemp, xlab = "Year", ylab = "Attendants")
+plot(wc$Year, wc$GoalsScored, xlab = "Year", ylab = "Goals_Scored")
+plot(wc$Year, wc$MatchesPlayed, xlab = "Year", ylab = "Matched_Played")
+###################################################################################################
