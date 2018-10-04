@@ -36,7 +36,7 @@ str(wc)
 str() gives summary about the structure of an object. Calling str(wc) gives important information about the type of data inside **wc** table and how many **rows(obs.)** and **columns(variables)** are available.
 
 ### Start asking basic questions and answer them visually:
-It is a good idea to start examining each **variable(column)** alone and take initial intution how its data beahves.
+It is a good idea to start examining each **variable(column)** alone and take initial intution how its data behaves.
 
 ### 2.1) How many times did each country win a world cup?
 ```
@@ -69,14 +69,14 @@ barplot(sort(table(wc$Country), decreasing = TRUE), las=2)
 ![](Graphs/WC-Hosts.png)
 
 ### 2.4) How many people attended each World-Cup ?
-Here is a case where you need to modify the data to do complete your job.
+Here is a case where you need to modify the data to complete your job.
 By examining **wc$Attendance** column we find that it's factor and there is '.' instead of ',' inside each string.
 ```
 str(wc$Attendance)  #It is factor and '.' instead of ','
 ```
 ![](Graphs/str-wc$attendace.png)
 
-We need to fix that :
+We need to fix this :
 ```
 #Attendance during each WC?
 # Fixing format of wc$attendance
